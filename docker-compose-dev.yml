@@ -1,0 +1,16 @@
+version: '2'
+
+services:
+
+  pokemonstoragesystem:
+    build:
+      context: .
+      dockerfile: Dockerfile-dev
+    image: pokemonstoragesystem_dev
+    volumes:
+      - .:/data
+      - ./certs:/root/.mitmproxy
+    ports:
+      - 9000:80
+      - 8081:8080
+

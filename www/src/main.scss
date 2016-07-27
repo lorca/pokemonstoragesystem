@@ -1,0 +1,63 @@
+
+
+body {
+  background-color: $body-bg;
+}
+
+footer {
+  background-color: $footer-bg;
+  width: 100%;
+}
+
+.container {
+  max-width: 48rem;
+}
+
+.section-header {
+  min-width: 100%;
+  padding: 5px;
+  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+}
+
+.jumbotron {
+  border-radius: 0px;
+}
+
+@include media-breakpoint-down(sm) {
+  nav {
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+
+  // title doesn't fit on small screens
+  .navbar-brand {
+    display: none;
+  }
+}
+
+// show the pokemon list inside of a card on bigger screens
+@include media-breakpoint-up(md) {
+
+  // mostly borrowed from 'card card-block' but wihout 0.25rem border radius
+  .tmalloy-card {
+    padding: 1.25rem;
+    padding-top: 0px;
+    position: relative;
+    display: block;
+    margin-bottom: 0.75rem;
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+
+    // hide the border on the top section header when in card view
+    .row:first-child {
+      border-top: 0px;
+    }
+  }
+
+  // pull the filter search bar to the right edge
+  nav .pull-xs-right {
+    margin-right: -15px;
+  }
+
+}

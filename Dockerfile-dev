@@ -1,0 +1,19 @@
+FROM nginx
+
+# nginx image has files in conf.d by default
+RUN rm -rf /etc/nginx/conf.d && mkdir -p /etc/nginx/conf.d 
+
+RUN apt-get update && apt-get install -y build-essential python python-dev python-pip protobuf-compiler \
+ libffi-dev libssl-dev libxml2-dev libxslt1-dev libjpeg62-turbo-dev zlib1g-dev
+RUN pip install --upgrade pip cffi && pip install flask protobuf ipaddress uwsgi mitmproxy
+
+# node
+RUN apt-get install -y curl
+RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
+RUN apt-get install -y nodejs
+
+COPY nginx/nginx-dev.conf /etc/nginx/nginx.conf
+
+WORKDIR /data
+
+ENTRYPOINT ["bash", "/data/scripts/init-dev.sh"]
