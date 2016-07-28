@@ -7,6 +7,11 @@ services:
       context: .
       dockerfile: Dockerfile
     image: pokemonstoragesystem
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "500m"
+        max-file: "1"
     ports:
       - 80:80
       - 8080:8080
